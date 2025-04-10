@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Text, StyleSheet, FlatList } from 'react-native';
 import ProductCard from '@/app/components/product/ProductCard';
+import ProductHeader from '../components/product/ProductHeader';
 
 const products = [
   {
@@ -24,9 +25,22 @@ const products = [
 ];
 
 export default function ProductScreen() {
+  const [search, setSearch] = useState('');
+
+  const handleSearch = (text: string) => {
+    setSearch(text);
+  };
+
+  
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Product</Text>
+      <ProductHeader
+        onSearch={handleSearch}
+        onFilterPress={() => console.log('Open filter modal')}
+        onCategoryPress={() => console.log('Open category modal')}
+        onAddPress={() => console.log('Open add product modal')}
+      />
       <FlatList
         data={products}
         keyExtractor={(item) => item.id}
