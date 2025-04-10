@@ -3,60 +3,45 @@ import ProductCard from '@/app/components/product/ProductCard';
 import { useEffect, useState } from 'react';
 import { ProductType } from '@/app/types/product';
 
-// import { getProducts } from '@/services/productService';
-
 export default function ProductScreen() {
   const [products, setProducts] = useState<ProductType[]>([]);
 
   useEffect(() => {
-    // Simulasi dummy data biar UI-nya kelihatan
-  const dummyProducts: ProductType[] = [
-  {
-    id: 1,
-    name: 'Kemeja Lengan Panjang',
-    categoryId: 1,
-    categoryName: 'Pakaian',
-    stock: 10,
-    buyingPrice: 50000,
-    sellingPrice: 75000,
-    inputDate: '2024-04-01',
-  },
-  {
-    id: 2,
-    name: 'Celana Jeans',
-    categoryId: 1,
-    categoryName: 'Pakaian',
-    stock: 5,
-    buyingPrice: 100000,
-    sellingPrice: 150000,
-    inputDate: '2024-04-03',
-  },
-  {
-    id: 3,
-    name: 'Sneakers Pria',
-    categoryId: 2,
-    categoryName: 'Sepatu',
-    stock: 8,
-    buyingPrice: 200000,
-    sellingPrice: 300000,
-    inputDate: '2024-04-05',
-  },
-];
+    // Simulasi dummy data
+    const dummyProducts: ProductType[] = [
+      {
+        id: 1,
+        name: 'Kemeja Lengan Panjang',
+        categoryId: 1,
+        categoryName: 'Pakaian',
+        quantity: 10, 
+        buyingPrice: 50000,
+        sellingPrice: 75000,
+        inputDate: '2024-04-01',
+      },
+      {
+        id: 2,
+        name: 'Celana Jeans',
+        categoryId: 1,
+        categoryName: 'Pakaian',
+        quantity: 5,
+        buyingPrice: 100000,
+        sellingPrice: 150000,
+        inputDate: '2024-04-03',
+      },
+      {
+        id: 3,
+        name: 'Sneakers Pria',
+        categoryId: 2,
+        categoryName: 'Sepatu',
+        quantity: 8,
+        buyingPrice: 200000,
+        sellingPrice: 300000,
+        inputDate: '2024-04-05',
+      },
+    ];
 
     setProducts(dummyProducts);
-
-    // Kalau nanti service-nya udah siap tinggal uncomment ini:
-    /*
-    const fetchProducts = async () => {
-      try {
-        const res = await getProducts();
-        setProducts(res.items); // atau sesuaikan dengan struktur responsenya
-      } catch (err) {
-        console.error(err);
-      }
-    };
-    fetchProducts();
-    */
   }, []);
 
   return (
@@ -75,6 +60,9 @@ export default function ProductScreen() {
           />
         )}
         contentContainerStyle={{ paddingBottom: 20 }}
+        ListEmptyComponent={
+          <Text className="text-center text-gray-400 mt-10">No products found</Text>
+        }
       />
     </View>
   );

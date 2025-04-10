@@ -3,7 +3,7 @@ export type ProductType = {
     name: string;
     categoryId: number; 
     categoryName: string;
-    stock: number; 
+    quantity: number; 
     sellingPrice: number;
     buyingPrice: number;
     inputDate: string;
